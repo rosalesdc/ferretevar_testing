@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="hide_products_inherited" model="ir.ui.view">
+            <field name="name">product.template.inherited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='standard_price']" position="attributes">              
+                    <attribute name="groups">account.group_account_manager</attribute> 
+                </xpath>
+            </field>
+        </record>
+    </data>	
+</odoo>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="s4g_register_expense" name="Register expenses">
+
+    	<t t-call="website.layout">
+    		<title>Register an expense</title>
+    		<meta charset="UTF-8"/>
+    		<div id="wrap" class="">
+    			<div class="container">
+
+    				<t t-if="employee_obj.user_id">
+                        <div class="row">
+                            <div class="text-center">
+                                <h1>
+                                    Register an expense
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div class="col-md-offset-2 col-md-8">
+
+                            <form action="/website/create_myexpense/" id="formExpense" method="post" class="s_website_form form-horizontal container mt32" enctype="multipart/form-data">
+
+                                <input type="hidden" id="csrf_token" name="csrf_token"
+                                                                   t-att-value="request.csrf_token()"/>
+
+                                <div class="row">
+                                    <div class="form-group" >
+                                        <label for="name">Expense Description</label>
+                                        <input type="text" name="name" class="form-control o_website_form_input" id="name_desc" required="1" placeholder="ej. Main travel" />
+                                        <span id="errorName"/>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="employee_id" t-att-value="employee_obj.id"/>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="x_project_id">Project</label>
+                                        <select name="x_project_id" id="x_project_id" class="form-control select2_control">
+                                            <t t-if="projects">
+                                                <option value="">Select a project</option>
+                                                <t t-foreach="projects" t-as="project">
+                                                    <option t-att-value="project.id">
+                                                        <t t-esc="project.name" />
+                                                    </option>
+                                                </t>
+                                            </t>
+                                            <t t-else="" >
+                                                <option value="">There aren't projects assigned to you.</option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="product_id">Product</label>
+                                        <select name="product_id" id="product_id" class="form-control select2_control" required="1">
+                                            <t t-if="products">
+                                                <option value="">Select a product expensed</option>
+                                                <t t-foreach="products" t-as="product">
+                                                    <option t-att-value="product.id">
+                                                        <t t-esc="product.name" />
+                                                    </option>
+                                                </t>
+                                            </t>
+                                            <t t-else="" >
+                                                <option value="">We're sorry, you can't register a expense</option>
+                                            </t>
+                                            <span id="errorProduct"/>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="date">Expense Date</label>
+                                        <input type="text" name="date" id="date" class="form-control o_website_form_date" required="1"/>
+                                        <span id="errorDate"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="unit_amount">Unit amount</label>
+                                        <input type="number" min="0.1" step="0.1" id="unit_amount" name="unit_amount" class="form-control partial_amount" required="1"/>
+                                        <span id="errorUnitAmount"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity</label>
+                                        <input type="number" class="form-control partial_amount" id="quantity" min="0.1" step="0.1" name="quantity" required="1"/>
+                                        <span id="errorQuantity"/>
+                                    </div>
+                                    <div id="result_total" class="hidden">
+                                        <strong>Total Amount:</strong> <span id="total_amount" />
+                                        <br/>
+                                        <br/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="reference">Reference</label>
+                                        <input type="text" class="form-control" id="reference" name="reference" placeholder="ej. Bill LIM12"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="attachment">Attach a voucher file</label>
+                                        <input type="file" data-max-size="3072000" class="form-control o_website_form_input" id="voucher_file" name="Voucher" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Only show the send button if all the required fields are filled -->
+                                    <div class="form-group" id="send_expense">
+                                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7 text-right">
+                                            <button type="submit" id="btnSendExpense" class="btn btn-lg btn-primary">
+                                                Send Expense
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </t>
+
+                    <t t-else="">
+                        <div class="row">
+                            <div class="text-center">
+                                <h1>
+                                    You need to login and be employee to register expenses.
+                                </h1>
+                            </div>
+                        </div>
+                    </t>
+
+    			</div>
+    		</div>
+
+    	</t>
+
+    </template>
+
+    <template id="expense_success" name="Expense registered">
+        <t t-call="website.layout">
+            <title>Register an expense</title>
+            <meta charset="UTF-8"/>
+            <div class="container">
+                <br/>
+                <br/>
+                <div class="alert alert-success">
+                    <h3>Your expense has been registered</h3>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="project_form_view_inherited" model="ir.ui.view">
+            <field name="name">project.project_form_view.inherited</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="expenses" string="Expenses">
+                        <field name="x_expense_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="employee_id" />
+                                <field name="name" />
+                                <field name="product_id" />
+                                <field name="unit_amount" />
+                                <field name="quantity" />
+                                <field name="total_amount" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

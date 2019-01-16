@@ -1,0 +1,13 @@
+.my-error{
+  color: #a94442;
+  border-color: #a94442 !important;
+  border: 1px solid #a94442 !important;
+  box-shadow: 0 0 10px #ce001c;
+}
+
+.my-success{
+  color: #00A85A;
+  border-color: #00A85A !important;
+  border: 1px solid #00A85A !important;
+  box-shadow: 0 0 10px #7AFAB0;
+}

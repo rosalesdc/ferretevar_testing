@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="s4g_register_expenses" model="website.menu">
+            <field name="name">Register expenses</field>
+            <field name="url">/page/report_expenses_portal_user.s4g_register_expense/</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">30</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+	</data>
+</odoo>

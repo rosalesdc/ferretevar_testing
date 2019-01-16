@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="image_log_form_view" model="ir.ui.view">
+			<field name="name">image_log.form.view</field>
+			<field name="model">images_log.log</field>
+			<field name="arch" type="xml">
+				<form string="Images log">
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name" readonly="True" />
+							</h1>
+						</div>
+						<group>
+							<field name="product_id" readonly="True" />
+							<field name="description" readonly="True" />
+							<field name="success_load" readonly="True" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="images_log_tree_view" model="ir.ui.view">
+			<field name="name">images_log.tree.view</field>
+			<field name="model">images_log.log</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" />
+					<field name="product_id" />
+					<field name="success_load" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="images_log_action" model="ir.actions.act_window">
+			<field name="name">Images load log</field>
+			<field name="res_model">images_log.log</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem
+			id="images_log_menuitem"
+			name="Images load log"
+			parent="base.menu_board_root"
+			action="images_log_action"
+			sequence="50"
+			/>
+	</data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="report_expenses_portal_user" name="Assets to the frontend" inherit_id="website.assets_frontend">
+		<xpath expr="." position="inside">
+			<!-- All the CSS -->
+			<link rel="stylesheet" href="/report_expenses_portal_user/static/src/css/register_expenses.css"/>
+			<!-- All the js -->
+			<script type="text/javascript" src="/report_expenses_portal_user/static/src/js/register_expenses.js"/>
+		</xpath>
+	</template>
+</odoo>
